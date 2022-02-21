@@ -1,4 +1,17 @@
-
+#necessary to implement `download_data()` [see below]
+import requests
+from pathlib import Path
+import time
+#standard data analysis libraries
+import numpy as np 
+import pandas as pd 
+#imports for displaying, rendering, and saving plots and visualizations
+import plotly
+import plotly.express as px
+from IPython.display import *
+import plotly.io as pio
+import ipywidgets as widgets
+from ipywidgets import *
 
 
 
