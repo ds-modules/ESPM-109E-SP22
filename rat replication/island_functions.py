@@ -15,7 +15,27 @@ from ipywidgets import *
 
 
 
-def show(x, tags = []):
+def show(x : str = None, 
+         tags: list = []):
+    """
+    Display text or other data using Ipython
+    
+    Parameters
+    ––––––––––
+    x : str | default ``None``
+        the value to display, if None,
+        two empty lines are displayed
+        
+    tags : list of str | default ``[]``
+        uses each element of tags as an HTML
+        tag; tags will be applied from left
+        to right, so the last tage in the 
+        list will be the outermost applied
+    
+    Returns
+    –––––––
+    None
+    """
     for tag in tags:
         x = f"<{tag}>{x}</{tag}>"
     display(Markdown(" "))
@@ -27,13 +47,13 @@ def showtable(self,
          columns: list = ["all"], 
          rows: int = 20, 
          start: int = 0,
-         title = None,
-         desc = True):
+         title: str = None,
+         desc: bool = True):
         """
         Display pandas.DataFrame using custom values 
 
         Parameters
-        ----------
+        ––––––––––
         allrows : bool | default ``False``
             Wether or not to show all rows
             
@@ -49,8 +69,14 @@ def showtable(self,
         start: int | default ``0``
             What index to start displaying the DataFrame at
         
+        title: str | default ``None``
+            A title for the DataFrame to be displayed using
+            ``show()``
+        desc: bool | default ``True``
+            Wether to display the DataFrame's size
+        
         Returns
-        -------
+        –––––––
         None
         """
         if type(title) == str:
