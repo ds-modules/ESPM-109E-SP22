@@ -1,0 +1,58 @@
+Figure 3 Make.R:
+R code to produce Figure 3, and the accompanying analyses presented in the text, in: 
+Burgess SC, Johnston EC, Wyatt ASJ, Leichter JJ, Edmunds PJ (in press) Response diversity in corals: hidden differences in bleaching mortality among cryptic Pocillopora species. Ecology.
+Uses 'Data on Bleaching 2019.csv'
+
+
+Figure 4 Make.R:
+R code to produce Figure 4, and the accompanying analyses presented in the text, in: 
+Burgess SC, Johnston EC, Wyatt ASJ, Leichter JJ, Edmunds PJ (in press) Response diversity in corals: hidden differences in bleaching mortality among cryptic Pocillopora species. Ecology.
+Uses 'Data on Mortality 2019.csv'
+
+
+Figure 5 Make.R:
+R code to produce Figure 5, and the accompanying analyses presented in the text, in: 
+Burgess SC, Johnston EC, Wyatt ASJ, Leichter JJ, Edmunds PJ (in press) Response diversity in corals: hidden differences in bleaching mortality among cryptic Pocillopora species. Ecology.
+Uses 'Data on Haplotypes 2019.csv'
+
+
+Figure 6 Make.R:
+R code to produce Figure 6, and the accompanying analyses presented in the text, in: 
+Burgess SC, Johnston EC, Wyatt ASJ, Leichter JJ, Edmunds PJ (in press) Response diversity in corals: hidden differences in bleaching mortality among cryptic Pocillopora species. Ecology.
+Uses 'Data on Haplotypes 2019.csv'
+
+
+
+Data on Bleaching 2019.csv:
+Metadata
+Month: month in 2019 when photoquadrat was taken
+Site: Sampling site, label corresponds to the site used in the Moorea Coral Reef Long-Term Ecological Research (MCR-LTER) program.
+Quadrat: Quadrat identifier
+Image Name: Image identifier
+Coral ID: Coral colony identifier
+Longest.cm: Longest diameter (in centimeters) along the longest axis of the coral in planar view from the photoquadrat images taken in May 2019.
+Bleaching: Bleaching severity category: 0 = no bleaching, 1 = partial bleaching (many pale branch tips), 2 = moderate bleaching (white branch tips, bleaching extends down the branch), 3 = severe bleaching (whole colonies white). 
+
+
+Data on Mortality 2019.csv:
+Metadata
+Site: Sampling site, label corresponds to the site used in the Moorea Coral Reef Long-Term Ecological Research (MCR-LTER) program.
+Sector: Sector identifier within sites
+Quadrat: Quadrats identifier within sectors
+Coral ID: Coral colony identifier
+Longest.cm: Longest diameter (in centimeters) along the longest axis of the coral in planar view from the photoquadrat images  taken in February 2019
+Mortality: 0 = alive in August 2019, 1 = dead in August 2019
+Partial.colony.mortality: 0 no partial mortality, 1 = alive with partial mortality, in August 2019
+
+
+Data on Haplotypes 2019.csv:
+Metadata
+Trip: 1 = February 2019; 2= August 2019
+Site: Sampling site, label corresponds to the site used in the Moorea Coral Reef Long-Term Ecological Research (MCR-LTER) program.
+Species.haplotype: mtORF haplotype identifier
+Photos_max.length.cm: Longest diameter (in centimeters) along the longest axis of the coral in planar view from the photoquadrat images  taken in February (for Trip 1) or August (for Trip 2) 2019
+Mortality: 0 = alive in August 2019, 1 = dead in August 2019
+Species: The taxon name ascribed to the mtORF haplotype
+
+ 
+
