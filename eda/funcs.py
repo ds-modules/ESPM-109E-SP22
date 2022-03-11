@@ -14,8 +14,13 @@ import ipywidgets as widgets
 from ipywidgets import *
 
 def visualize(data):
-    @interact(Kind = widgets.Dropdown(options=["Scatter Plot", "Histogram"], value = None))
-    def plot_kind(Kind):
+    @interact(Kind = widgets.Dropdown(options=["Scatter Plot", "Histogram", "Box", "Violin"], value = None),
+              reset = ToggleButton(value=False, 
+                                              description='Return to safety', 
+                                              icon = "check", button_style = "success"))
+    def plot_kind(reset, Kind):
+        if reset:
+            return
         cols = widgets.Dropdown(options=data.columns)
         if Kind == "Scatter Plot":
             show(">***NOTE:*** If you chose `Color By` to be a column with numeric data, " \
@@ -32,13 +37,17 @@ def visualize(data):
                 if color != None and data[color].dtype == float:
                     marginal = None
                 if (x != None and y != None):
-                    px.scatter(data_frame = data, 
-                               x = x, y = y, 
-                               color = color,
-                               color_continuous_scale='viridis', 
-                               template = 'seaborn',
-                               marginal_x = marginal, marginal_y = marginal,
-                               title = f"{x} vs. {y}").show()
+                    try:
+                        px.scatter(data_frame = data, 
+                                   x = x, y = y, 
+                                   color = color,
+                                   color_continuous_scale='viridis', 
+                                   template = 'seaborn',
+                                   marginal_x = marginal, marginal_y = marginal,
+                                   title = f"{x} vs. {y}").show()
+                    except Exception as e:
+                        show(x = f"Encountered {e}; please try another combination of selections",
+                             tags = ["center", "code style='color:red;font-size:15px'"])
         if Kind == "Histogram":
             @interact(x = widgets.Dropdown(options=data.columns, value = None,
                                           description = "X-Axis"),
@@ -48,12 +57,51 @@ def visualize(data):
                                                  value = 'box', description = "Top Graph"))
             def hist_helper(x, marginal, color):
                 if (x != None):
-                    px.histogram(data_frame = data, 
-                               x = x,
+                    try:
+                        px.histogram(data_frame = data, 
+                                   x = x,
+                                   color = color, template = "seaborn",
+                                    marginal = marginal,
+                                    title = f"Distribution of {x}").show()
+                    except Exception as e:
+                        show(x = f"Encountered {e}; please try another combination of selections",
+                             tags = ["center", "code style='color:red;font-size:15px'"])
+        if Kind == "Box":
+            @interact(x = widgets.Dropdown(options=data.columns, value = None,
+                                          description = "X-Axis"),
+                      y = widgets.Dropdown(options=data.columns, value = None,
+                                          description = "Y-Axis"),
+                      color = widgets.Dropdown(options=[None] + list(data.columns), value = None,
+                                              description = "Color By"),
+                     notches = Dropdown(value = False, options= [True, False], description="Notched Style"))
+            def box_helper(x, y, color, notches):
+                if (x != None):
+                    try:
+                        px.box(data_frame = data,
+                               x = x, y = y, 
                                color = color, template = "seaborn",
-                                marginal = marginal,
-                                title = f"Distribution of {x}").show()
-
+                               notched = notches).show()
+                    except Exception as e:
+                            show(x = f"Encountered {e}; please try another combination of selections",
+                                 tags = ["center", "code style='color:red;font-size:15px'"])
+        if Kind == "Violin":
+            @interact(x = widgets.Dropdown(options=data.columns, value = None,
+                                          description = "X-Axis"),
+                      y = widgets.Dropdown(options=data.columns, value = None,
+                                          description = "Y-Axis"),
+                      color = widgets.Dropdown(options=[None] + list(data.columns), value = None,
+                                              description = "Color By"),
+                     box = Dropdown(value = False, options= [True, False], description="Inner Boxes"))
+            def violin_helper(x, y, color, box):
+                if (x != None):
+                    try:
+                        px.violin(data_frame = data,
+                                  x = x, y = y, 
+                                  color = color, template = "seaborn",
+                                  box = box).show()
+                    except Exception as e:
+                            show(x = f"Encountered {e}; please try another combination of selections",
+                                 tags = ["center", "code style='color:red;font-size:15px'"])
 
 
 def show(x : str = None, 
